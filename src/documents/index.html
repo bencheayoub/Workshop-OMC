@@ -1,0 +1,420 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Git & GitHub Workshop – Open Minds Club</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/theme/black.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" />
+        <style>
+            .d-flex { display: flex; justify-content: center; align-items: center; }
+            .gap-1 { gap: 1rem; }
+            .fl-ac { display: flex; align-items: center; }
+            .reveal .slides section img { max-width: 80%; max-height: 60vh; display: block; margin: 1rem auto; }
+            .reveal .slides section pre { margin: 0.5em auto; width: 90%; }
+            .reveal .slides section pre code { font-size: 0.75em; max-height: 65vh; word-wrap: break-word; }
+            .left-align { text-align: left; margin-left: 5%; margin-right: 5%; }
+            .small-text { font-size: 0.8em; }
+            .subtitle { opacity: 0.7; margin-top: -10px; font-size: 0.8em; }
+            .reveal .slides section h3,
+            .reveal .slides section h4,
+            .reveal .slides section p { margin-bottom: 0.5em; }
+            .reveal .slides section ul,
+            .reveal .slides section ol { margin-top: 0.3em; margin-bottom: 0.5em; }
+            .highlight-text { color: #42affa; }
+            .warning-text { color: #ff6b6b; }
+            .success-text { color: #51cf66; }
+            .two-col { display: flex; gap: 2rem; text-align: left; }
+            .two-col > div { flex: 1; }
+            .tag { color: #8b8b8b; font-size: 0.6em; }
+            .reveal table { font-size: 0.7em; margin: 0 auto; }
+        </style>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <!-- TITLE -->
+                <section>
+                    <p>Git & GitHub</p>
+                    <h4 style="margin-bottom: 3em">Open Minds Club</h4>
+                    <a href="https://www.instagram.com/openmindsclub/" target="_blank">
+                        <div class="d-flex">
+                            <img src="data:image/jpeg;base64,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" alt="Open Minds Club logo" style="width: 150px; height: 150px; max-height: none; margin: 0; border-radius: 8px;" />
+                        </div>
+                    </a>
+                    <p style="margin-top: 1rem; color: rgb(139, 139, 139)">Ayoub @atomic</p>
+                </section>
+
+                <!-- AGENDA -->
+                <section>
+                    <h3>Agenda</h3>
+                    <div class="left-align">
+                        <ol>
+                            <li>Open source &amp; licenses </li>
+                            <li>Git fundamentals (hands-on) </li>
+                            <li>Branches, merges &amp; conflicts </li>
+                            <li>GitHub &amp; the PR workflow</li>
+                            <li>Final lab: your first contribution</li>
+                        </ol>
+                        <p class="small-text">Bring a laptop with Git installed and a GitHub account.</p>
+                    </div>
+                </section>
+
+                <!-- PART 1 -->
+                <section>
+                    <section>
+                        <h3>Part 1</h3>
+                        <h4 class="highlight-text">Open Source &amp; Licenses</h4>
+                    </section>
+
+                    <section>
+                        <h3>What is Open Source?</h3>
+                        <div class="left-align">
+                            <p>Software whose source code is public, under a license that lets you:</p>
+                            <ul>
+                                <li>Use it for any purpose</li>
+                                <li>Study it and modify it</li>
+                                <li>Redistribute copies</li>
+                                <li>Share your modified versions</li>
+                            </ul>
+                            <p class="small-text">Linux, Python, Rust, Android, VS Code, Firefox... you already depend on it.</p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>No license = NOT open source</h3>
+                        <div class="left-align">
+                            <p>Public code on GitHub without a license is <span class="warning-text">all rights reserved</span> by default.</p>
+                            <ul>
+                                <li>People can read it, but legally can't reuse or modify it</li>
+                                <li>The license is what grants permission</li>
+                                <li>Always add a <code>LICENSE</code> file to a project you want shared</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>The Licenses You Should Know</h3>
+                        <table>
+                            <tr><th>License</th><th>Type</th><th>In short</th></tr>
+                            <tr><td>MIT</td><td>Permissive</td><td>Do almost anything, keep the copyright notice</td></tr>
+                            <tr><td>Apache-2.0</td><td>Permissive</td><td>Like MIT + explicit patent grant</td></tr>
+                            <tr><td>GPL-3.0</td><td>Copyleft</td><td>Derivatives must stay GPL and open</td></tr>
+                            <tr><td>AGPL-3.0</td><td>Strong copyleft</td><td>GPL, also applies to network/SaaS use</td></tr>
+                            <tr><td>CC0 / Unlicense</td><td>Public domain</td><td>No restrictions at all</td></tr>
+                        </table>
+                        <p class="small-text">Not sure? <strong>MIT</strong> for simplicity, <strong>GPL</strong> if you want improvements to stay open. Use <a href="https://choosealicense.com" target="_blank">choosealicense.com</a>.</p>
+                    </section>
+
+                    <section>
+                        <h3>Anatomy of a Healthy Repo</h3>
+                        <div class="left-align">
+                            <ul>
+                                <li><code>README.md</code>: what it is, how to install and run it</li>
+                                <li><code>LICENSE</code>: what others may do with it</li>
+                                <li><code>CONTRIBUTING.md</code>: how to propose changes</li>
+                                <li><code>SECURITY.md</code>: how to report vulnerabilities privately</li>
+                                <li><code>.gitignore</code>: what must never be committed</li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+
+                <!-- PART 2 -->
+                <section>
+                    <section>
+                        <h3>Part 2</h3>
+                        <h4 class="highlight-text">Git Fundamentals</h4>
+                    </section>
+
+                    <section>
+                        <h3>Why Version Control?</h3>
+                        <div class="left-align">
+                            <p>Without it: <code>project_final_v2_REAL_final.zip</code></p>
+                            <ul>
+                                <li>Full history: who changed what, when, and why</li>
+                                <li>Go back to any previous state</li>
+                                <li>Experiment safely on branches</li>
+                                <li>Work in parallel with a team</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Git ≠ GitHub</h3>
+                        <div class="two-col">
+                            <div>
+                                <h4>Git</h4>
+                                <ul>
+                                    <li>Tool on your machine</li>
+                                    <li>Distributed version control</li>
+                                    <li>Works fully offline</li>
+                                    <li>Created by Linus Torvalds (2005)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>GitHub</h4>
+                                <ul>
+                                    <li>Website hosting Git repos</li>
+                                    <li>Issues, PRs, Actions, Pages</li>
+                                    <li>Collaboration layer</li>
+                                    <li>Alternatives: GitLab, Codeberg</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>The Three Areas</h3>
+                        <pre><code class="language-text" data-trim>Working Directory  --git add-->  Staging Area  --git commit-->  Repository
+ (your files)                  (next snapshot)                   (history)</code></pre>
+                        <div class="left-align">
+                            <ul>
+                                <li><strong>Working directory</strong>: files as you edit them</li>
+                                <li><strong>Staging area</strong>: what goes in the next commit</li>
+                                <li><strong>Repository</strong>: permanent history in <code>.git/</code></li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Your First Repo <span class="tag">hands-on</span></h3>
+                        <pre><code class="language-bash" data-trim>mkdir hello-git && cd hello-git
+git init
+echo "# Hello Git" > README.md
+git status
+git add README.md
+git commit -m "Add README"
+git log --oneline</code></pre>
+                    </section>
+
+                    <section>
+                        <h3>The Daily Loop</h3>
+                        <pre><code class="language-bash" data-trim>git status            # what changed?
+git diff              # see unstaged changes
+git add file.txt      # stage a file (git add . for all)
+git diff --staged     # see what will be committed
+git commit -m "msg"   # save the snapshot
+git log --oneline --graph</code></pre>
+                    </section>
+
+                    <section>
+                        <h3>Good Commit Messages</h3>
+                        <div class="left-align">
+                            <ul>
+                                <li>One logical change per commit</li>
+                                <li>Imperative, short subject: <span class="success-text">"Fix login redirect bug"</span></li>
+                                <li><span class="warning-text">"stuff"</span>, <span class="warning-text">"fix"</span>, <span class="warning-text">"final2"</span> help nobody</li>
+                                <li>Explain the <em>why</em> in the body when it isn't obvious</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>.gitignore &amp; Secrets</h3>
+                        <pre><code class="language-text" data-trim>.env
+node_modules/
+__pycache__/
+*.log
+target/</code></pre>
+                        <div class="left-align">
+                            <p class="warning-text">Never commit passwords, API keys, tokens, or private keys.</p>
+                            <p class="small-text">Deleting the file later doesn't help: it stays in history. If a secret leaks, <strong>revoke and rotate it immediately</strong>.</p>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Undoing Things</h3>
+                        <pre><code class="language-bash" data-trim>git restore file.txt            # discard unstaged edits
+git restore --staged file.txt   # unstage, keep edits
+git commit --amend              # fix the last commit (local only)
+git revert &lt;commit&gt;            # new commit that undoes one (safe)
+git reset --hard &lt;commit&gt;       # DANGEROUS: rewrites, loses work</code></pre>
+                        <p class="small-text warning-text">Never rewrite history that others have already pulled.</p>
+                    </section>
+
+                    
+                </section>
+
+                <!-- PART 3 -->
+                <section>
+                    <section>
+                        <h3>Part 3</h3>
+                        <h4 class="highlight-text">Branches, Merges &amp; Conflicts</h4>
+                    </section>
+
+                    <section>
+                        <h3>Branches</h3>
+                        <p>A branch is just a lightweight pointer to a commit.</p>
+                        <pre><code class="language-bash" data-trim>git branch                 # list branches
+git switch -c feature/login  # create + switch
+# ... edit, add, commit ...
+git switch main
+git merge feature/login
+git branch -d feature/login  # clean up</code></pre>
+                        <p class="small-text">Rule of thumb: <code>main</code> stays working; every change happens on a branch.</p>
+                    </section>
+
+                    <section>
+                        <h3>Branch Types &amp; Naming</h3>
+                        <table>
+                            <tr><th>Type</th><th>Purpose</th><th>Example</th></tr>
+                            <tr><td><code>main</code></td><td>Stable, always working code</td><td><code>main</code></td></tr>
+                            <tr><td>Feature</td><td>New functionality</td><td><code>feature/login-page</code></td></tr>
+                            <tr><td>Bugfix</td><td>Fix a non-urgent bug</td><td><code>fix/null-pointer-profile</code></td></tr>
+                            <tr><td>Hotfix</td><td>Urgent fix for production</td><td><code>hotfix/leaked-api-key</code></td></tr>
+                            <tr><td>Release</td><td>Prepare and stabilize a version</td><td><code>release/1.2.0</code></td></tr>
+                            <tr><td>Docs / Chore</td><td>Documentation, tooling, cleanup</td><td><code>docs/update-readme</code></td></tr>
+                        </table>
+                        <div class="left-align small-text">
+                            <ul>
+                                <li>Branch from <code>main</code>, keep branches short-lived and merge back through a PR</li>
+                                <li>Naming: <code>type/short-description</code>, lowercase, hyphens, no spaces</li>
+                                <li><strong>GitHub Flow</strong> (main + feature branches) suits most projects; <strong>Git Flow</strong> adds <code>develop</code> and <code>release</code> branches for versioned software</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Merge Conflicts</h3>
+                        <p>Two branches changed the same lines. Git asks you to decide.</p>
+                        <pre><code class="language-text" data-trim>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+print("Hello from main")
+=======
+print("Hello from feature")
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/login</code></pre>
+                        <div class="left-align small-text">
+                            <ol>
+                                <li>Edit the file: keep what you want, delete the markers</li>
+                                <li><code>git add file</code></li>
+                                <li><code>git commit</code></li>
+                            </ol>
+                        </div>
+                    </section>
+
+                    
+                </section>
+
+                <!-- PART 4 -->
+                <section>
+                    <section>
+                        <h3>Part 4</h3>
+                        <h4 class="highlight-text">GitHub &amp; the PR Workflow</h4>
+                    </section>
+
+                    <section>
+                        <h3>Remotes: Connecting to GitHub</h3>
+                        <pre><code class="language-bash" data-trim>git remote add origin git@github.com:USER/hello-git.git
+git push -u origin main     # first push
+git push                    # later pushes
+git pull                    # fetch + merge teammates' work
+git clone &lt;url&gt;             # copy a remote repo locally</code></pre>
+                    </section>
+
+                
+
+                    <section>
+                        <h3>Issues</h3>
+                        <div class="left-align">
+                            <ul>
+                                <li>Track bugs, ideas, and tasks</li>
+                                <li>Good bug report: expected vs actual, steps to reproduce, environment</li>
+                                <li>Look for labels: <code>good first issue</code>, <code>help wanted</code></li>
+                                <li>Comment before starting so work isn't duplicated</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>The Fork &amp; Pull Request Workflow</h3>
+                        <div class="left-align">
+                            <ol>
+                                <li><strong>Fork</strong> the repo to your account</li>
+                                <li><strong>Clone</strong> your fork</li>
+                                <li><strong>Branch</strong>: <code>git switch -c fix/typo</code></li>
+                                <li><strong>Commit</strong> your changes</li>
+                                <li><strong>Push</strong> to your fork</li>
+                                <li><strong>Open a PR</strong> against the original repo</li>
+                                <li><strong>Iterate</strong> on review feedback (new commits on the same branch)</li>
+                            </ol>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>A Good Pull Request</h3>
+                        <div class="left-align">
+                            <ul>
+                                <li>Read <code>CONTRIBUTING.md</code> first</li>
+                                <li>Small and focused: one problem per PR</li>
+                                <li>Clear title and description, link the issue (<code>Fixes #12</code>)</li>
+                                <li>Be polite and patient with reviewers; feedback is not personal</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Other GitHub Tools</h3>
+                        <div class="left-align">
+                            <ul>
+                                <li><strong>Actions</strong>: CI/CD (run tests on every push)</li>
+                                <li><strong>Pages</strong>: free static site hosting</li>
+                                <li><strong>Projects</strong></li>
+                                </ul>
+                        </div>
+                    </section>
+                </section>
+
+                <!-- FINAL LAB -->
+                <section>
+                    <h3>Final Lab: Your First Contribution </h3>
+                    <div class="left-align">
+                        <p>Practice repo: <a href="https://github.com/bencheayoub/Workshop-OMC.git" target="_blank">link to practice repo</a></p>
+                        <ol>
+                            <li>Fork it and clone your fork</li>
+                            <li>Create a branch <code>add-YOURNAME</code></li>
+                            <li>Add yourself to <code>CONTRIBUTORS.md</code></li>
+                            <li>Commit, push, open a pull request</li>
+                            <li>Review a neighbor's PR with one comment</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- CHEAT SHEET -->
+                <section>
+                    <h3>Cheat Sheet</h3>
+                    <pre><code class="language-bash" data-trim>git init / git clone &lt;url&gt;
+git status / git diff / git log --oneline --graph
+git add . / git commit -m "msg"
+git switch -c &lt;branch&gt; / git merge &lt;branch&gt;
+git push / git pull / git fetch
+git restore &lt;file&gt; / git revert &lt;commit&gt;</code></pre>
+                </section>
+
+                <!-- FINAL THOUGHTS -->
+                <section>
+                    <h3>Final Thoughts</h3>
+                    <div class="left-align">
+                        <p>Git is the tool. Open source is the culture.</p>
+                        <p style="margin-top: 1em">Commit often, branch freely, and always check the license.</p>
+                        <p style="margin-top: 1em">Start small: a typo fix is a real contribution.</p>
+                        <p style="margin-top: 1em" class="highlight-text">Every expert was once a beginner.</p>
+                    </div>
+                </section>
+
+                <!-- QUESTIONS -->
+                <section>
+                    <h3>Questions?</h3>
+                </section>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/highlight.js"></script>
+        <script>
+            Reveal.initialize({
+                hash: true,
+                plugins: [RevealHighlight],
+            });
+        </script>
+    </body>
+</html>
